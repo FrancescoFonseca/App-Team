@@ -1,0 +1,21 @@
+{
+  "short_name": "Dr. Fonseca",
+  "name": "Dr. Francesco Fonseca | Nutrizione",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=192&h=192&q=80",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=512&h=512&q=80",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#fcfbf9",
+  "theme_color": "#556B2F",
+  "display": "standalone",
+  "orientation": "portrait"
+}
