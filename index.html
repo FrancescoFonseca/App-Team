@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francesco Fonseca | Nutrizione & Benessere</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { color: #333; background-color: #fcfbf9; line-height: 1.6; position: relative; }
+        header { background: white; padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; }
+        nav a { text-decoration: none; color: #555; margin-left: 20px; font-weight: bold; }
+        
+        /* Hero */
+        .hero { 
+            padding: 180px 5% 100px; 
+            text-align: center; 
+            background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+        }
+        .hero h1 { font-size: 2.8rem; color: #556B2F; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; font-weight: 500; }
+        
+        section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.2rem; color: #556B2F; margin-bottom: 40px; }
+        
+        /* Stili Forum Esercizi Video e Foto */
+        .forum-allenamento { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .forum-sub-title { color: #556B2F; border-left: 4px solid #8FBC8F; padding-left: 10px; margin: 25px 0 15px; font-size: 1.5rem; }
+        
+        .exercise-card { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; margin-bottom: 25px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
+        .exercise-media { display: flex; flex-direction: column; gap: 10px; }
+        .exercise-img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .exercise-info h4 { color: #E97451; font-size: 1.25rem; margin-bottom: 10px; }
+        .exercise-info p { margin-bottom: 10px; font-size: 0.95rem; }
+        .exercise-info ul { list-style-position: inside; font-size: 0.9rem; color: #555; }
+        .exercise-info ul li { margin-bottom: 5px; }
+
+        /* Calcolatore BMI */
+        .bmi-container { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eef2e6; }
+        .bmi-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .results-box { background: #f5f7f2; padding: 25px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; }
+        .result-item { margin-bottom: 15px; font-size: 1.1rem; }
+        .result-val { font-weight: bold; color: #556B2F; font-size: 1.3rem; }
+        
+        /* Contatti */
+        .contatti-box { background: #f5f7f2; padding: 40px; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .info-recapiti h3 { color: #556B2F; margin-bottom: 15px; }
+        .info-recapiti p { margin-bottom: 10px; font-size: 1.1rem; }
+        .info-recapiti a { color: #333; text-decoration: none; }
+        .social-btn { display: inline-block; background: #556B2F; color: white !important; padding: 5px 12px; border-radius: 4px; font-size: 0.9rem; margin-top: 5px; }
+        
+        form, .bmi-form { background: white; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        
+        button, .chat-button-inline { width: 100%; background: #E97451; color: white; border: none; padding: 12px; font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-align: center; text-decoration: none; display: block; }
+        button:hover, .chat-button-inline:hover { background: #d46341; }
+        footer { background: #222; color: white; text-align: center; padding: 15px; margin-top: 40px; }
+
+        /* NUOVO: Bottone Fluttuante Chat Esperto */
+        .chat-expert-floating {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #556B2F;
+            color: white !important;
+            text-decoration: none;
+            padding: 15px 22px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .chat-expert-floating:hover {
+            transform: scale(1.05);
+            background: #415224;
+        }
+        .chat-icon {
+            font-size: 1.3rem;
+        }
+        
+        @media (max-width: 768px) { 
+            .contatti-box, .bmi-flex, .exercise-card { grid-template-columns: 1fr; } 
+            header { flex-direction: column; text-align: center; gap: 10px; } 
+            .chat-expert-floating { bottom: 15px; right: 15px; padding: 12px 18px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BOTTONE FLUTTUANTE CHAT ESPERTO SEMPRE VISIBILE -->
+    <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="chat-expert-floating">
+        <span class="chat-icon">💬</span> Chatta con l'Esperto
+    </a>
+
+    <header>
+        <div style="font-size: 1.2rem; font-weight: bold; color: #556B2F;">Dr. Francesco Fonseca</div>
+        <nav>
+            <a href="#alimentazione">Alimentazione</a>
+            <a href="#forum-allenamento">Forum Esercizi</a>
+            <a href="#bmi-section">Calcola BMI</a>
+            <a href="#contatti">Contatti</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Nutri il tuo corpo. Trasforma la tua vita.</h1>
+        <p>Piani alimentari personalizzati, consigli scientifici e integrazione mirata basata sulle tue reali esigenze.</p>
+    </section>
+
+    <section id="alimentazione">
+        <h2 class="section-title">Alimentazione e Cibi Sani</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div class="card">
+                <h3>La Spesa Consapevole</h3>
+                <p>Impara a leggere le etichette nutrizionali ed evita gli inganni del marketing per fare scelte sane e veloci.</p>
+            </div>
+            <div class="card">
+                <h3>Il Piatto Equilibrato</h3>
+                <p>Distribuisci macro e micronutrienti in modo corretto durante la giornata per non soffrire la fame.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORUM ALLENAMENTO CON FOTO E VIDEO REALI DA YOUTUBE -->
+    <section id="forum-allenamento">
+        <h2 class="section-title">Forum dell'Allenamento Interattivo</h2>
+        <p style="text-align: center; margin-bottom: 30px; color: #666;">Studia l'esecuzione corretta tramite le immagini e i video ufficiali disponibili su YouTube.</p>
+        
+        <div class="forum-allenamento">
+            
+            <!-- CATEGORIA 1: TONIFICAZIONE -->
+            <h3 class="forum-sub-title">🏋️ Domanda 1: Quali sono i migliori esercizi per tonificare e definire i muscoli?</h3>
+            <p style="margin-bottom: 20px; font-style: italic; color: #555;"><strong>Risposta del Dr. Fonseca:</strong> Per tonificare servono movimenti multiarticolari che stimolano più gruppi muscolari contemporaneamente. Ecco i 3 esercizi chiave:</p>
+
+            <!-- Esercizio Tonificazione 1 -->
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <h4>1. Lo Squat (Gambe e Glutei)</h4>
+                    <p>L'esercizio principe per la parte inferiore. Ottimo per dare tono a cosce e glutei e aumentare il consumo metabolico basale.</p>
+                    <ul>
+                        <li><strong>Come eseguirlo:</strong> Piedi alla larghezza delle spalle. Scendi controllando il movimento, portando il bacino all'indietro. Mantieni i talloni ben saldi a terra e le ginocchia in linea con i piedi.</li>
+                        <li><strong>Target:</strong> Quadricipiti, glutei e core.</li>
+                    </ul>
+                </div>
+                <div class="exercise-media">
+                    <img class="exercise-img" src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=500&q=80" alt="Squat Foto">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/M99ZunL-FpU" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Esercizio Tonificazione 2 -->
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <h4>2. Piegamenti sulle braccia (Push-Ups)</h4>
+                    <p>Fondamentale per tonificare braccia, spalle e petto, migliorando la forza generale della parte superiore.</p>
+                    <ul>
+                        <li><strong>Come eseguirlo:</strong> Mani a terra allineate al petto. Mantieni il corpo dritto senza far oscillare o cedere il bacino. Se l'esercizio è troppo intenso, poggia le ginocchia sul pavimento.</li>
+                        <li><strong>Target:</strong> Pettorali, tricipiti e spalle.</li>
+                    </ul>
+                </div>
+                <div class="exercise-media">
+                    <img class="exercise-img" src="https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=500&q=80" alt="Push-ups Foto">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/Y3Tsh7G_Fp0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Esercizio Tonificazione 3 -->
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <h4>3. Gli Affondi (Lunges)</h4>
+                    <p>Esercizio formidabile per lo sviluppo asimmetrico delle gambe e per tonificare in modo profondo la muscolatura dei glutei.</p>
+                    <ul>
+                        <li><strong>Come eseguirlo:</strong> Fai un passo in avanti e scendi verticalmente. Il ginocchio anteriore deve piegarsi a 90° senza superare la linea della punta del piede. Spingi sul tallone davanti per tornare in piedi.</li>
+                        <li><strong>Target:</strong> Glutei, muscoli femorali e stabilità.</li>
+                    </ul>
+                </div>
+                <div class="exercise-media">
+                    <img class="exercise-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=80" alt="Affondi Foto">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/uG5S7vE_Yv0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border:0; border-top: 1px dashed #ccc; margin: 40px 0;">
+
+            <!-- CATEGORIA 2: PERDITA DI PESO -->
+            <h3 class="forum-sub-title">🔥 Domanda 2: Quali esercizi accelerano la perdita di peso e il consumo calorico?</h3>
+            <p style="margin-bottom: 20px; font-style: italic; color: #555;"><strong>Risposta del Dr. Fonseca:</strong> Per favorire il dimagrimento serve un mix di resistenza muscolare (che preserva la massa magra) e picchi cardio. Ecco i migliori 3:</p>
+
+            <!-- Esercizio Dimagrimento 1 -->
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <h4>1. Il Plank</h4>
+                    <p>Anche se statico, il plank richiede l'attivazione di tutto il corpo. Più muscoli lavorano insieme, più calorie si bruciano a riposo.</p>
+                    <ul>
+                        <li><strong>Come eseguirlo:</strong> Poggiati sugli avambracci e sulle punte dei piedi. Crea una linea retta parallela al suolo con il corpo. Contrai forte gli addominali ed evita di inarcare la schiena.</li>
+                        <li><strong>Target:</strong> Addome, lombari, spalle e glutei.</li>
+                    </ul>
+                </div>
+                <div class="exercise-media">
+                    <img class="exercise-img" src="https://images.unsplash.com/photo-1566241142559-40e1dab266c6?auto=format&fit=crop&w=500&q=80" alt="Plank Foto">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/yeD96Sg8gns" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Esercizio Dimagrimento 2 -->
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <h4>2. Mountain Climbers (Scalatore)</h4>
+                    <p>Un fantastico esercizio metabolico che alza rapidamente i battiti cardiaci, stimolando il consumo dei grassi.</p>
+                    <ul>
+                        <li><strong>Come eseguirlo:</strong> Parti in posizione da piegamento sulle mani. Porta le ginocchia verso il petto in modo alternato e rapido, mantenendo un ritmo fluido e senza alzare troppo il bacino.</li>
+                        <li><strong>Target:</strong> Cardio, addominali e spalle.</li>
+                    </ul>
+                </div>
+                <div class="exercise-media">
+                    <img class="exercise-img" src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?auto=format&fit=crop&w=500&q=80" alt="Mountain Climbers Foto">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/36mXpI_GZ-0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Esercizio Dimagrimento 3 -->
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <h4>3. Jumping Jacks</h4>
+                    <p>Esercizio cardio dinamico completo, perfetto da inserire nei circuiti brucia-grassi ad alta intensità a casa.</p>
+                    <ul>
+                        <li><strong>Come eseguirlo:</strong> Salta divaricando le gambe e portando contemporaneamente le mani a toccarsi sopra la testa. Con un secondo salto ritorna in posizione di partenza a piedi uniti.</li>
+                        <li><strong>Target:</strong> Sistema cardiocircolatorio, coordinazione e polpacci.</li>
+                    </ul>
+                </div>
+                <div class="exercise-media">
+                    <img class="exercise-img" src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&w=500&q=80" alt="Jumping Jacks Foto">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/2W4Z9SscNio" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CALCOLATORE BMI -->
+    <section id="bmi-section">
+        <h2 class="section-title">Calcola il tuo BMI Attuale e Obiettivo</h2>
+        <div class="bmi-container">
+            <div class="bmi-flex">
+                <div class="bmi-form">
+                    <div class="form-group">
+                        <label for="eta">Età (anni)</label>
+                        <input type="number" id="eta" min="18" max="100" placeholder="Es. 30">
+                    </div>
+                    <div class="form-group">
+                        <label for="altezza">Altezza (in cm)</label>
+                        <input type="number" id="altezza" min="100" max="250" placeholder="Es. 175">
+                    </div>
+                    <div class="form-group">
+                        <label for="peso-attuale">Peso Attuale (in kg)</label>
+                        <input type="number" id="peso-attuale" min="30" max="250" placeholder="Es. 80">
+                    </div>
+                    <div class="form-group">
+                        <label for="peso-obiettivo">Peso Obiettivo (in kg)</label>
+                        <input type="number" id="peso-obiettivo" min="30" max="250" placeholder="Es. 70">
+                    </div>
+                    <button type="button" onclick="calcolaBMI()">Calcola i tuoi dati</button>
+                </div>
+                
+                <div class="results-box">
+                    <div class="result-item">Il tuo BMI Attuale: <span id="bmi-att-val" class="result-val">-</span></div>
+                    <div class="result-item">Stato di salute attuale: <span id="bmi-att-status" style="font-weight: bold; color: #E97451;">-</span></div>
+                    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
+                    <div class="result-item">Il tuo BMI Obiettivo: <span id="bmi-obj-val" class="result-val">-</span></div>
+                    <div class="result-item">Stato di salute obiettivo: <span id="bmi-obj-status" style="font-weight: bold; color: #556B2F;">-</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECAPITI E FORM CONTATTI -->
+    <section id="contatti">
+        <h2 class="section-title">Contatti & Prenotazioni</h2>
+        <div class="contatti-box">
+            <div class="info-recapiti">
+                <h3>I Miei Recapiti</h3>
+                <p><strong>📍 Studio:</strong> Via per Leporano 94</p>
+                <p><strong>📞 Telefono:</strong> <a href="tel:+393923060288">+39 392 306 0288</a></p>
+                <p><strong>✉️ Email:</strong> <a href="mailto:francescofonsec@hotmail.it">francescofonsec@hotmail.it</a></p>
+                <p><strong>📱 Instagram:</strong> <a href="https://instagram.com/francesco.fonseca1" target="_blank" class="social-btn">@francesco.fonseca1</a></p>
+                
+                <!-- NUOVO: Pulsante Chat Diretto inserito nei contatti -->
+                <div style="margin-top: 25px;">
+                    <p style="font-size: 0.95rem; margin-bottom: 8px; font-weight: bold; color: #556B2F;">Hai un dubbio immediato?</p>
+                    <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="chat-button-inline">💬 Richiedi Consulenza in Chat</a>
+                </div>
+            </div>
+            <div>
+                <form action="https://formspree.io/f/xbdbwyve" method="POST">
+                    <div class="form-group">
+                        <label for="nome">Nome e Cognome</label>
+                        <input type="text" id="nome" name="name" required placeholder="Es. Mario Rossi">
+                    </div>
+                    <div class="form-group">
+                        <label for="email-cliente">La tua Email</label>
+                        <input type="email" id="email-cliente" name="_replyto" required placeholder="Es. mario@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="obiettivo">Obiettivo Principale</label>
+                        <select id="obiettivo" name="obiettivo">
+                            <option value="Perdere peso">Perdere peso in salute</option>
+                            <option value="Massa muscolare">Aumento massa muscolare</option>
+                            <option value="Energia e Integrazione">Energia e Integrazione mirata</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="messaggio">Messaggio (facoltativo)</label>
+                        <textarea id="messaggio" name="message" rows="3" placeholder="Scrivi qui le tue richieste..."></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="Nuova richiesta dal sito Nutrizione">
+                    <button type="submit">Invia Messaggio</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dr. Francesco Fonseca. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function getBmiStatus(bmi) {
+            if (bmi < 18.5) return "Sottopeso";
+            if (bmi >= 18.5 && bmi < 25) return "Normopeso";
+            if (bmi >= 25 && bmi < 30) return "Sovrappeso";
+            return "Obesità";
+        }
+
+        function calcolaBMI() {
+            var altezzaCm = parseFloat(document.getElementById('altezza').value);
+            var pesoActual = parseFloat(document.getElementById('peso-attuale').value);
+            var pesoObj = parseFloat(document.getElementById('peso-obiettivo').value);
+
+            if (!altezzaCm || !pesoActual || !pesoObj) {
+                alert("Per favore, inserisci tutti i campi (Altezza, Peso attuale e Peso obiettivo).");
+                return;
+            }
+
+            var altezzaM = altezzaCm / 100;
+            var bmiAttuale = pesoActual / (altezzaM * altezzaM);
+            document.getElementById('bmi-att-val').innerText = bmiAttuale.toFixed(1);
+            document.getElementById('bmi-att-status').innerText = getBmiStatus(bmiAttuale);
+
+            var bmiObiettivo = pesoObj / (altezzaM * altezzaM);
+            document.getElementById('bmi-obj-val').innerText = bmiObiettivo.toFixed(1);
+            document.getElementById('bmi-obj-status').innerText = getBmiStatus(bmiObiettivo);
+        }
+    </script>
+
+</body>
+</html>
