@@ -1,4 +1,4 @@
-const cacheName = 'fonseca-v1';
+const cacheName = 'fonseca-v2';
 const assets = ['./', './index.html', './manifest.json'];
 self.addEventListener('install', async e => {
   const cache = await caches.open(cacheName);
