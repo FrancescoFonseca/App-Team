@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -11,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#556B2F">
     <meta name="apple-mobile-web-app-title" content="Dr. Fonseca">
-    <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=192&h=192&q=80">
+    <link class="apple-touch-icon" href="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=192&h=192&q=80">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
@@ -29,8 +28,8 @@
         .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; }
         .card h3 { color: #556B2F; margin-bottom: 10px; font-size: 1.3rem; }
         
-        /* Stili avanzati per l'intera gamma Juice Plus+ */
-        .jp-category-title { font-size: 1.6rem; color: #E97451; margin: 40px 0 20px; border-bottom: 2px solid #f4f7f0; padding-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        /* Stili della gamma Juice Plus+ */
+        .jp-category-title { font-size: 1.6rem; color: #E97451; margin: 40px 0 20px; border-bottom: 2px solid #f4f7f0; padding-bottom: 8px; display: flex; align-items: center; gap: 10px; font-weight: bold; }
         .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .product-card { background: white; border: 1px solid #eef2e6; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 6px 18px rgba(0,0,0,0.07); }
@@ -42,11 +41,11 @@
         .product-benefit { background: #f4f7f0; padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #333; border-left: 3px solid #8FBC8F; margin-bottom: 15px; }
         .product-benefit strong { color: #556B2F; }
         
-        /* Contenitore pulsanti d'acquisto */
-        .product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: auto; }
-        .btn-buy { background: #E97451; color: white !important; text-decoration: none; padding: 10px; font-size: 0.9rem; font-weight: bold; border-radius: 4px; text-align: center; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        /* Layout e design pulsanti */
+        .product-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+        .btn-buy { background: #E97451; color: white !important; text-decoration: none; padding: 12px; font-size: 0.95rem; font-weight: bold; border-radius: 6px; text-align: center; transition: background 0.2s; display: block; box-shadow: 0 2px 4px rgba(233,116,81,0.2); }
         .btn-buy:hover { background: #d46341; }
-        .btn-info { background: #556B2F; color: white !important; text-decoration: none; padding: 10px; font-size: 0.9rem; font-weight: bold; border-radius: 4px; text-align: center; transition: background 0.2s; display: flex; align-items: center; justify-content: center; }
+        .btn-info { background: #556B2F; color: white !important; text-decoration: none; padding: 10px; font-size: 0.9rem; font-weight: bold; border-radius: 6px; text-align: center; transition: background 0.2s; display: block; }
         .btn-info:hover { background: #415224; }
 
         .forum-box { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eef2e6; }
@@ -147,10 +146,10 @@
         <div class="forum-box">
             <div class="forum-question-card">
                 <h3><span>❓</span> Domanda: Cosa devo mangiare realmente per perdere peso in salute senza soffrire la fame?</h3>
-                <p style="font-size: 0.95rem; color: #555;"><strong>UtenteAnonimo:</strong> Salve Dottore, vorrei dimagrire ma ho paura di dver eliminare del tutto i carboidrati. Quali sono gli alimenti ideali?</p>
+                <p style="font-size: 0.95rem; color: #555;"><strong>UtenteAnonimo:</strong> Salve Dottore, vorrei dimagrire ma ho paura di dover eliminare del tutto i carboidrati. Quali sono gli alimenti ideali?</p>
                 <div class="doctor-reply">
                     <h4>Dr. Francesco Fonseca:</h4>
-                    <p>Per perdere peso serve un <strong>deficit calorico controllato</strong> aumentando la sazietà. È fundamental inserire fontes proteiche magre e carboidrati ricchi di fibre.</p>
+                    <p>Per perdere peso serve un <strong>deficit calorico controllato</strong> aumentando la sazietà. È fondamentale inserire fonti proteiche magre e carboidrati ricchi di fibre.</p>
                     <div class="food-tags">
                         <span class="tag-si">✔️ Cibi Consigliati: Petto di pollo/tacchino, pesce azzurro, uova, legumi, avena, verdure a foglia verde, riso integrale.</span>
                         <span class="tag-no">❌ Da evitare: Zuccheri raffinati, insaccati grassi, farine bianche, bevande gassate e alcolici.</span>
@@ -178,7 +177,7 @@
                     <h4>Dr. Francesco Fonseca:</h4>
                     <p>Il mantenimento si basa sulla <strong>regola dell'80/20</strong>. L'80% da cibi densi di nutrienti e puliti, il restante 20% ti permette flessibilità sociale.</p>
                     <div class="food-tags">
-                        <span class="tag-si">✔️ Cibi Consigliati: Cereali integrali variati, formaggi frescos magri, tanta frutta di stagione, avocado, carni magre.</span>
+                        <span class="tag-si">✔️ Cibi Consigliati: Cereali integrali variati, formaggi freschi magri, tanta frutta di stagione, avocado, carni magre.</span>
                         <span class="tag-no">❌ Da evitare: Porzioni eccessive croniche, spuntini continui fuori pasto dettati dalla noia.</span>
                     </div>
                 </div>
@@ -236,7 +235,7 @@
         </div>
     </section>
 
-    <!-- SEZIONE TUTTA LA GAMMA JUICE PLUS+ CON COMPRA ORA -->
+    <!-- SEZIONE INTEGRATA JUICE PLUS+ CON COMPRA ORA SU OGNI SINGOLO PRODOTTO -->
     <section id="prodotti">
         <h2 class="section-title">Integrazione Naturale Juice Plus+</h2>
         <p class="section-subtitle">
@@ -254,7 +253,7 @@
                     <p class="product-desc">Concentrato di 18 diversi tipi di frutta e verdura raccolte al perfetto grado di maturazione per mantenere intatti fitonutrienti e vitamine.</p>
                     <div class="product-benefit">⚡ <strong>Benefici:</strong> Forte azione antiossidante, rinforza le difese immunitarie e riduce lo stress ossidativo cellulare.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -268,7 +267,7 @@
                     <p class="product-desc">Un'accurata selezione di 12 varietà di bacche e piccoli frutti ricchi di polifenoli, ideali per la protezione cellulare.</p>
                     <div class="product-benefit">🩸 <strong>Benefici:</strong> Supporta la microcircolazione, contrasta la ritenzione idrica e favorisce la salute di pelle, unghie e capelli.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -282,7 +281,7 @@
                     <p class="product-desc">Un'alternativa 100% vegetale ricavata da alghe, frutti e semi che racchiude uno spettro completo di acidi grassi Omega 3, 7 e 9.</p>
                     <div class="product-benefit">🧠 <strong>Benefici:</strong> Contribuisce alla normale funzione cerebrale, alla salute dell'apparato cardiovascolare e della vista.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -300,7 +299,7 @@
                     <p class="product-desc">Sostituto del pasto bilanciato a base di proteine vegetali di alta qualità, carboidrati complessi e fibre prebiotiche.</p>
                     <div class="product-benefit">⚖️ <strong>Benefici:</strong> Ideale per la gestione o perdita del peso, assicura un senso di sazietà prolungato senza cali glicemici.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -314,7 +313,7 @@
                     <p class="product-desc">Barrette ricche di frutta, semi di lino e mirtilli rossi che offrono un profilo nutrizionale perfettamente bilanciato da portare sempre con sé.</p>
                     <div class="product-benefit">🎒 <strong>Benefici:</strong> Snack spezza-fame perfetto per il lavoro o i viaggi, evita i picchi di insulina indotti da merendine classiche.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -328,7 +327,7 @@
                     <p class="product-desc">La versione salata del pasto bilanciato. Una zuppa vegetale disidratata gustosa e calda, ricca di nutrienti essenziali.</p>
                     <div class="product-benefit">🍲 <strong>Benefici:</strong> Un pranzo o una cena ipocalorica, calda e rigenerante, pronta in pochissimi minuti.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -346,7 +345,7 @@
                     <p class="product-desc">Shake proteico specifico per sportivi, contenente 25g di proteine vegetali isolate a porzione, arricchito con vitamine del gruppo B naturali.</p>
                     <div class="product-benefit">💪 <strong>Benefici:</strong> Supporta la crescita della massa muscolare, accelera il recupero post-allenamento e riduce la stanchezza fisica.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -360,7 +359,7 @@
                     <p class="product-desc">Un integratore energetico naturale in stick effervescenti a base di Yerba Mate, Mango, Guava e scorza di Limone.</p>
                     <div class="product-benefit">🎯 <strong>Benefici:</strong> Fornisce energia pulita a lento rilascio, aumenta la concentrazione mentale nello studio/lavoro senza l'effetto "crash".</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -374,7 +373,7 @@
                     <p class="product-desc">Integratore in bustine monodose contenente Glucomannano, una fibra naturale estratta dalla radice di Konjac che assorbe acqua nello stomaco.</p>
                     <div class="product-benefit">🛑 <strong>Benefici:</strong> Riduce drasticamente gli attacchi di fame nervosa prima dei pasti principali e favorisce il transito intestinale.</div>
                     <div class="product-actions">
-                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra ora</a>
+                        <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
                     </div>
                 </div>
@@ -448,7 +447,7 @@
 
             <div class="form-contatti-email">
                 <h3>Invia un messaggio in Studio</h3>
-                <form action="https://formspree.io/f/xbdbwyve" method="POST">
+                <form action="https://formspree.io/f/xanykgzo" method="POST">
                     <input type="hidden" name="_to" value="francescofonsec@hotmail.it">
                     <input type="hidden" name="_subject" value="Nuovo messaggio dall'App di Nutrizione">
                     
