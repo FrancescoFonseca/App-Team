@@ -97,6 +97,12 @@
         button:hover, .chat-button-inline:hover { background: #d46341; }
         .chat-button-inline { background: #556B2F; margin-top: 15px; }
         .chat-button-inline:hover { background: #415224; }
+        
+        /* Stile messaggio di riscontro */
+        #form-status { margin-top: 15px; padding: 12px; border-radius: 4px; font-size: 0.95rem; font-weight: bold; text-align: center; display: none; }
+        #form-status.success { background: #eef7ee; color: #3e7d3e; border: 1px solid #8FBC8F; }
+        #form-status.error { background: #fdf1f1; color: #c0392b; border: 1px solid #f5c6cb; }
+
         footer { background: #222; color: white; text-align: center; padding: 15px; margin-top: 40px; }
         .chat-expert-floating { position: fixed; bottom: 25px; right: 25px; background: #556B2F; color: white !important; text-decoration: none; padding: 15px 22px; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center; gap: 10px; transition: transform 0.3s ease, background 0.3s ease; }
         .chat-expert-floating:hover { transform: scale(1.05); background: #415224; }
@@ -177,7 +183,7 @@
                     <h4>Dr. Francesco Fonseca:</h4>
                     <p>Il mantenimento si basa sulla <strong>regola dell'80/20</strong>. L'80% da cibi densi di nutrienti e puliti, il restante 20% ti permette flessibilità sociale.</p>
                     <div class="food-tags">
-                        <span class="tag-si">✔️ Cibi Consigliati: Cereali integrali variati, formaggi freschi magri, tanta frutta di stagione, avocado, carni magre.</span>
+                        <span class="tag-si">✔️ Cibi Consigliati: Cereali integrali variati, formaggi frescos magri, tanta frutta di stagione, avocado, carni magre.</span>
                         <span class="tag-no">❌ Da evitare: Porzioni eccessive croniche, spuntini continui fuori pasto dettati dalla noia.</span>
                     </div>
                 </div>
@@ -447,7 +453,7 @@
 
             <div class="form-contatti-email">
                 <h3>Invia un messaggio in Studio</h3>
-                <form action="https://formspree.io/f/xanykgzo" method="POST">
+                <form id="email-form" action="https://formspree.io/f/xanykgzo" method="POST">
                     <input type="hidden" name="_to" value="francescofonsec@hotmail.it">
                     <input type="hidden" name="_subject" value="Nuovo messaggio dall'App di Nutrizione">
                     
@@ -466,7 +472,9 @@
                         <textarea id="message" name="message" rows="4" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
                     </div>
                     
-                    <button type="submit">📧 Invia Messaggio</button>
+                    <button type="submit" id="form-submit-btn">📧 Invia Messaggio</button>
+                    <!-- Box di riscontro email dinamico -->
+                    <div id="form-status"></div>
                 </form>
             </div>
         </div>
@@ -475,6 +483,45 @@
     <footer><p>&copy; 2026 Dr. Francesco Fonseca. Tutti i diritti riservati.</p></footer>
 
     <script>
+        // Gestione invio modulo contatti con riscontro visivo immediato (AJAX)
+        var form = document.getElementById("email-form");
+        var button = document.getElementById("form-submit-btn");
+        var statusBox = document.getElementById("form-status");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Blocca il caricamento della pagina bianca
+            button.disabled = true;
+            button.innerText = "Invio in corso...";
+            
+            var data = new FormData(form);
+            
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                statusBox.style.display = "block";
+                if (response.ok) {
+                    statusBox.className = "success";
+                    statusBox.innerText = "Grazie! Il tuo messaggio è stato inviato con successo.";
+                    form.reset(); // Svuota i campi del modulo
+                } else {
+                    statusBox.className = "error";
+                    statusBox.innerText = "Si è verificato un problema. Riprova o invia un'email diretta.";
+                }
+                button.disabled = false;
+                button.innerText = "📧 Invia Messaggio";
+            }).catch(error => {
+                statusBox.style.display = "block";
+                statusBox.className = "error";
+                statusBox.innerText = "Errore di connessione. Controlla la tua rete.";
+                button.disabled = false;
+                button.innerText = "📧 Invia Messaggio";
+            });
+        });
+
         function getBmiStatus(bmi) {
             if (bmi < 18.5) return "Sottopeso";
             if (bmi >= 18.5 && bmi < 25) return "Normopeso";
