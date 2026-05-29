@@ -1,16 +1,15 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Francesco Fonseca | Nutrizione & Benessere</title>
     
-    <!-- Collegamento PWA App -->
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#556B2F">
     <meta name="apple-mobile-web-app-title" content="Dr. Fonseca">
-    <link class="apple-touch-icon" href="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=192&h=192&q=80">
+    <link class="apple-touch-icon" href="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-fruit-and-vegetable-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210086300/capsules-fv-pdp.png">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
@@ -18,7 +17,7 @@
         body { color: #333; background-color: #fcfbf9; line-height: 1.6; position: relative; }
         header { background: white; padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; }
         nav a { text-decoration: none; color: #555; margin-left: 20px; font-weight: bold; }
-        .hero { padding: 180px 5% 100px; text-align: center; background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover; }
+        .hero { padding: 180px 5% 100px; text-align: center; background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.9)), url('https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-fruit-and-vegetable-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210086300/capsules-fv-pdp.png') no-repeat center center/cover; }
         .hero h1 { font-size: 2.8rem; color: #556B2F; margin-bottom: 15px; }
         .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; font-weight: 500; }
         section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
@@ -33,7 +32,7 @@
         .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .product-card { background: white; border: 1px solid #eef2e6; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 6px 18px rgba(0,0,0,0.07); }
-        .product-img { width: 100%; height: 200px; object-fit: cover; background: #f9f9f9; }
+        .product-img { width: 100%; height: 220px; object-fit: contain; background: #ffffff; padding: 15px; }
         .product-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
         .product-brand { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #556B2F; font-weight: bold; margin-bottom: 5px; }
         .product-info h3 { font-size: 1.25rem; color: #333; margin-bottom: 10px; }
@@ -68,6 +67,7 @@
         .recipe-details h5 { color: #556B2F; font-size: 0.95rem; margin: 10px 0 5px; }
         .recipe-details ul, .recipe-details ol { padding-left: 20px; font-size: 0.9rem; color: #555; }
         .recipe-details li { margin-bottom: 4px; }
+        
         .forum-allenamento { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
         .forum-sub-title { color: #556B2F; border-left: 4px solid #8FBC8F; padding-left: 10px; margin: 25px 0 15px; font-size: 1.5rem; }
         .exercise-card { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; margin-bottom: 25px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
@@ -78,12 +78,15 @@
         .exercise-info p { margin-bottom: 10px; font-size: 0.95rem; }
         .exercise-info ul { list-style-position: inside; font-size: 0.9rem; color: #555; }
         .exercise-info ul li { margin-bottom: 5px; }
+        
         .bmi-container { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eef2e6; }
         .bmi-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .results-box { background: #f5f7f2; padding: 25px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; }
         .result-item { margin-bottom: 15px; font-size: 1.1rem; }
         .result-val { font-weight: bold; color: #556B2F; font-size: 1.3rem; }
+        
         .contatti-box { background: #f5f7f2; padding: 40px; border-radius: 12px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .info-recapiti { background: white; padding: 25px; border-radius: 8px; border: 1px solid #eef2e6; }
         .info-recapiti h3 { color: #556B2F; margin-bottom: 15px; }
         .info-recapiti p { margin-bottom: 15px; font-size: 1.05rem; }
         .info-recapiti a { color: #333; text-decoration: none; }
@@ -93,12 +96,13 @@
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; color: #555; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; background: #fafafa; }
         .form-group input:focus, .form-group textarea:focus { border-color: #556B2F; outline: none; background: white; }
+        
         button, .chat-button-inline { width: 100%; background: #E97451; color: white; border: none; padding: 14px; font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-align: center; text-decoration: none; display: block; transition: background 0.2s; }
         button:hover, .chat-button-inline:hover { background: #d46341; }
         .chat-button-inline { background: #556B2F; margin-top: 15px; }
         .chat-button-inline:hover { background: #415224; }
         
-        /* Stile messaggio di riscontro */
+        /* Stile messaggio di riscontro email dinamico */
         #form-status { margin-top: 15px; padding: 12px; border-radius: 4px; font-size: 0.95rem; font-weight: bold; text-align: center; display: none; }
         #form-status.success { background: #eef7ee; color: #3e7d3e; border: 1px solid #8FBC8F; }
         #form-status.error { background: #fdf1f1; color: #c0392b; border: 1px solid #f5c6cb; }
@@ -107,7 +111,8 @@
         .chat-expert-floating { position: fixed; bottom: 25px; right: 25px; background: #556B2F; color: white !important; text-decoration: none; padding: 15px 22px; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center; gap: 10px; transition: transform 0.3s ease, background 0.3s ease; }
         .chat-expert-floating:hover { transform: scale(1.05); background: #415224; }
         .chat-icon { font-size: 1.3rem; }
-        @media (max-width: 768px) { .contatti-box, .bmi-flex, .exercise-card, .recipe-grid, .products-grid { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; gap: 10px; } .chat-expert-floating { bottom: 15px; right: 15px; padding: 12px 18px; font-size: 0.9rem; } }
+        
+        @media (max-width: 768px) { .contatti-box, .bmi-flex, .exercise-card, .recipe-grid, .products-grid { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; gap: 10px; padding: 10px 5%; } body { padding-top: 40px; } .hero { padding: 140px 5% 60px; } .chat-expert-floating { bottom: 15px; right: 15px; padding: 12px 18px; font-size: 0.9rem; } }
     </style>
 </head>
 <body>
@@ -183,7 +188,7 @@
                     <h4>Dr. Francesco Fonseca:</h4>
                     <p>Il mantenimento si basa sulla <strong>regola dell'80/20</strong>. L'80% da cibi densi di nutrienti e puliti, il restante 20% ti permette flessibilità sociale.</p>
                     <div class="food-tags">
-                        <span class="tag-si">✔️ Cibi Consigliati: Cereali integrali variati, formaggi frescos magri, tanta frutta di stagione, avocado, carni magre.</span>
+                        <span class="tag-si">✔️ Cibi Consigliati: Cereali integrali variati, formaggi freschi magri, tanta frutta di stagione, avocado, carni magre.</span>
                         <span class="tag-no">❌ Da evitare: Porzioni eccessive croniche, spuntini continui fuori pasto dettati dalla noia.</span>
                     </div>
                 </div>
@@ -241,18 +246,16 @@
         </div>
     </section>
 
-    <!-- SEZIONE INTEGRATA JUICE PLUS+ CON COMPRA ORA SU OGNI SINGOLO PRODOTTO -->
     <section id="prodotti">
         <h2 class="section-title">Integrazione Naturale Juice Plus+</h2>
         <p class="section-subtitle">
             I prodotti Juice Plus+ aiutano a colmare il vuoto nutrizionale quotidiano offrendo ingredienti di origine vegetale minimamente lavorati. Scopri la gamma completa selezionata per i tuoi obiettivi.
         </p>
 
-        <!-- CATEGORIA 1: ESSENTIALS CAPSULE -->
-        <div class="jp-category-title">🟢 Linea Essentials (Capsule e Masticabili)</div>
+        <div class="jp-category-title">🟢 Linea Essentials (Capsule)</div>
         <div class="products-grid">
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1611070973770-b1a6726b0641?auto=format&fit=crop&w=500&q=80" alt="Miscela Frutta e Verdura">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-fruit-and-vegetable-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210086300/capsules-fv-pdp.png" alt="Juice Plus Essentials Frutta e Verdura">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Essentials</span>
                     <h3>Miscela Frutta e Verdura</h3>
@@ -266,7 +269,7 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1607619056574-7b8f304f3c6f?auto=format&fit=crop&w=500&q=80" alt="Miscela Bacche">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-berry-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210085448/capsules-b-pdp.png" alt="Juice Plus Essentials Bacche">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Essentials</span>
                     <h3>Miscela Bacche</h3>
@@ -280,7 +283,7 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80" alt="Miscela Omega+">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-omega-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1715065478491/capsules-o-pdp.png" alt="Juice Plus Essentials Omega">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Essentials</span>
                     <h3>Miscela Omega+</h3>
@@ -294,11 +297,10 @@
             </div>
         </div>
 
-        <!-- CATEGORIA 2: COMPREHENSIVE SHAKES & SNACKS -->
-        <div class="jp-category-title">🟠 Linea Complete (Pasti Sostitutivi e Snack)</div>
+        <div class="jp-category-title">🟠 Linea Complete (Pasti Sostitutivi)</div>
         <div class="products-grid">
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=500&q=80" alt="Complete Shakes">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/complete-by-juice-plus--shakes/_jcr_content/root/container/container_copy_copy/image.coreimg.png/1709210086884/complete-shakes-pdp.png" alt="Complete Shakes">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Complete</span>
                     <h3>Complete Shake (Vaniglia / Cioccolato)</h3>
@@ -312,7 +314,7 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?auto=format&fit=crop&w=500&q=80" alt="Complete Bars">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/complete-by-juice-plus--bars/_jcr_content/root/container/container_copy_copy/image.coreimg.png/1709210087455/complete-bars-pdp.png" alt="Complete Bars">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Complete</span>
                     <h3>Complete Bars (Fruit / Chocolate)</h3>
@@ -326,7 +328,7 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=500&q=80" alt="Complete Zuppa">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/complete-by-juice-plus--vegetable-soup/_jcr_content/root/container/container_copy_copy/image.coreimg.png/1709210088015/complete-soup-pdp.png" alt="Complete Zuppa">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Complete</span>
                     <h3>Complete Vegetable Soup</h3>
@@ -340,11 +342,10 @@
             </div>
         </div>
 
-        <!-- CATEGORIA 3: PERFORMANCE E TARGET SPECIFICI -->
         <div class="jp-category-title">🔵 Linea Performance & Controllo</div>
         <div class="products-grid">
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=500&q=80" alt="Juice Plus Perform">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/juice-plus--perform/_jcr_content/root/container/container_copy_copy_1241198539/image.coreimg.png/1709210088513/perform-pdp.png" alt="Juice Plus Perform">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Lifestyle</span>
                     <h3>Juice Plus+ Perform</h3>
@@ -358,7 +359,7 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=500&q=80" alt="Uplift Energia">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/uplift/juice-plus--uplift/_jcr_content/root/container/container_copy_copy_1241198539/image.coreimg.png/1709210089332/uplift-pdp.png" alt="Uplift Energia">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Energy</span>
                     <h3>Juice Plus+ Uplift</h3>
@@ -372,7 +373,7 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=500&q=80" alt="Control Booster">
+                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/booster/complete-by-juice-plus--booster/_jcr_content/root/container/container_copy_copy_1241198539/image.coreimg.png/1709210089856/booster-pdp.png" alt="Control Booster">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Target</span>
                     <h3>Complete Control Booster</h3>
@@ -394,7 +395,7 @@
             <div class="exercise-card">
                 <div class="exercise-info">
                     <h4>Lo Squat (Gambe e Glutei)</h4>
-                    <p>Ottimo per dare tono a cosce e glutei e attivare il metabolismo.</p>
+                    <p>Ottimo per dare tono a cosce e glutei e attivare il metabolismo complessivo.</p>
                 </div>
                 <div class="exercise-media">
                     <div class="video-container">
@@ -405,7 +406,7 @@
             <div class="exercise-card">
                 <div class="exercise-info">
                     <h4>I Piegamenti (Push-Ups)</h4>
-                    <p>Fondamentale per tonificare braccia, spalle e pettorali.</p>
+                    <p>Fondamentale per tonificare braccia, spalle e pettorali in modo sicuro.</p>
                 </div>
                 <div class="exercise-media">
                     <div class="video-container">
@@ -473,7 +474,6 @@
                     </div>
                     
                     <button type="submit" id="form-submit-btn">📧 Invia Messaggio</button>
-                    <!-- Box di riscontro email dinamico -->
                     <div id="form-status"></div>
                 </form>
             </div>
@@ -483,13 +483,13 @@
     <footer><p>&copy; 2026 Dr. Francesco Fonseca. Tutti i diritti riservati.</p></footer>
 
     <script>
-        // Gestione invio modulo contatti con riscontro visivo immediato (AJAX)
+        // Gestione invio modulo contatti in AJAX con riscontro istantaneo a schermo
         var form = document.getElementById("email-form");
         var button = document.getElementById("form-submit-btn");
         var statusBox = document.getElementById("form-status");
 
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Blocca il caricamento della pagina bianca
+            event.preventDefault(); // Impedisce il caricamento della pagina bianca di Formspree
             button.disabled = true;
             button.innerText = "Invio in corso...";
             
@@ -498,25 +498,23 @@
             fetch(form.action, {
                 method: form.method,
                 body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             }).then(response => {
                 statusBox.style.display = "block";
                 if (response.ok) {
                     statusBox.className = "success";
                     statusBox.innerText = "Grazie! Il tuo messaggio è stato inviato con successo.";
-                    form.reset(); // Svuota i campi del modulo
+                    form.reset(); // Svuota i campi
                 } else {
                     statusBox.className = "error";
-                    statusBox.innerText = "Si è verificato un problema. Riprova o invia un'email diretta.";
+                    statusBox.innerText = "Si è verificato un problema. Riprova o contatta direttamente lo studio.";
                 }
                 button.disabled = false;
                 button.innerText = "📧 Invia Messaggio";
             }).catch(error => {
                 statusBox.style.display = "block";
                 statusBox.className = "error";
-                statusBox.innerText = "Errore di connessione. Controlla la tua rete.";
+                statusBox.innerText = "Errore di connessione. Controlla la tua rete internet.";
                 button.disabled = false;
                 button.innerText = "📧 Invia Messaggio";
             });
@@ -528,11 +526,12 @@
             if (bmi >= 25 && bmi < 30) return "Sovrappeso";
             return "Obesità";
         }
+        
         function calcolaBMI() {
             var altezzaCm = parseFloat(document.getElementById('altezza').value);
             var pesoActual = parseFloat(document.getElementById('peso-attuale').value);
             var pesoObj = parseFloat(document.getElementById('peso-obiettivo').value);
-            if (!altezzaCm || !pesoActual || !pesoObj) { alert("Inserisci tutti i campi."); return; }
+            if (!altezzaCm || !pesoActual || !pesoObj) { alert("Compila tutti i campi numerici."); return; }
             var altezzaM = altezzaCm / 100;
             var bmiAttuale = pesoActual / (altezzaM * altezzaM);
             document.getElementById('bmi-att-val').innerText = bmiAttuale.toFixed(1);
@@ -541,6 +540,7 @@
             document.getElementById('bmi-obj-val').innerText = bmiObiettivo.toFixed(1);
             document.getElementById('bmi-obj-status').innerText = getBmiStatus(bmiObiettivo);
         }
+
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });
         }
