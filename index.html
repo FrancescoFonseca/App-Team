@@ -1,266 +1,13 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Francesco Fonseca | Nutrizione & Benessere</title>
-    
-    <link rel="manifest" href="manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#556B2F">
-    <meta name="apple-mobile-web-app-title" content="Dr. Fonseca">
-    <link class="apple-touch-icon" href="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-fruit-and-vegetable-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210086300/capsules-fv-pdp.png">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { color: #333; background-color: #fcfbf9; line-height: 1.6; position: relative; }
-        header { background: white; padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; }
-        nav a { text-decoration: none; color: #555; margin-left: 20px; font-weight: bold; }
-        .hero { padding: 180px 5% 100px; text-align: center; background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.9)), url('https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-fruit-and-vegetable-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210086300/capsules-fv-pdp.png') no-repeat center center/cover; }
-        .hero h1 { font-size: 2.8rem; color: #556B2F; margin-bottom: 15px; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; font-weight: 500; }
-        section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.2rem; color: #556B2F; margin-bottom: 15px; }
-        .section-subtitle { text-align: center; max-width: 800px; margin: 0 auto 40px; color: #666; font-size: 1.05rem; }
-        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .card h3 { color: #556B2F; margin-bottom: 10px; font-size: 1.3rem; }
-        
-        /* Stili della gamma Juice Plus+ */
-        .jp-category-title { font-size: 1.6rem; color: #E97451; margin: 40px 0 20px; border-bottom: 2px solid #f4f7f0; padding-bottom: 8px; display: flex; align-items: center; gap: 10px; font-weight: bold; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .product-card { background: white; border: 1px solid #eef2e6; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 6px 18px rgba(0,0,0,0.07); }
-        .product-img { width: 100%; height: 220px; object-fit: contain; background: #ffffff; padding: 15px; }
-        .product-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .product-brand { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #556B2F; font-weight: bold; margin-bottom: 5px; }
-        .product-info h3 { font-size: 1.25rem; color: #333; margin-bottom: 10px; }
-        .product-desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; flex-grow: 1; }
-        .product-benefit { background: #f4f7f0; padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #333; border-left: 3px solid #8FBC8F; margin-bottom: 15px; }
-        .product-benefit strong { color: #556B2F; }
-        
-        /* Layout e design pulsanti */
-        .product-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
-        .btn-buy { background: #E97451; color: white !important; text-decoration: none; padding: 12px; font-size: 0.95rem; font-weight: bold; border-radius: 6px; text-align: center; transition: background 0.2s; display: block; box-shadow: 0 2px 4px rgba(233,116,81,0.2); }
-        .btn-buy:hover { background: #d46341; }
-        .btn-info { background: #556B2F; color: white !important; text-decoration: none; padding: 10px; font-size: 0.9rem; font-weight: bold; border-radius: 6px; text-align: center; transition: background 0.2s; display: block; }
-        .btn-info:hover { background: #415224; }
-
-        .forum-box { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eef2e6; }
-        .forum-question-card { background: #fdfdfd; border-left: 4px solid #E97451; padding: 20px; margin-bottom: 25px; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; border-radius: 0 8px 8px 0; }
-        .forum-question-card h3 { color: #333; font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .doctor-reply { background: #f9faf7; border: 1px dashed #8FBC8F; padding: 15px; border-radius: 6px; margin-top: 10px; }
-        .doctor-reply h4 { color: #556B2F; font-size: 1rem; margin-bottom: 8px; }
-        .food-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-        .tag-si { background: #eef7ee; color: #3e7d3e; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
-        .tag-no { background: #fdf1f1; color: #c0392b; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
-        .recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 30px; }
-        .recipe-card { background: #fff; border: 1px solid #eef2e6; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.04); display: flex; flex-direction: column; }
-        .recipe-img { width: 100%; height: 200px; object-fit: cover; }
-        .recipe-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .recipe-target { background: #8FBC8F; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; align-self: flex-start; margin-bottom: 10px; text-transform: uppercase; }
-        .recipe-target.massa { background: #E97451; }
-        .recipe-target.mantenimento { background: #556B2F; }
-        .recipe-content h4 { color: #333; font-size: 1.3rem; margin-bottom: 8px; }
-        .recipe-meta { font-size: 0.85rem; color: #777; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .recipe-details h5 { color: #556B2F; font-size: 0.95rem; margin: 10px 0 5px; }
-        .recipe-details ul, .recipe-details ol { padding-left: 20px; font-size: 0.9rem; color: #555; }
-        .recipe-details li { margin-bottom: 4px; }
-        
-        .forum-allenamento { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
-        .forum-sub-title { color: #556B2F; border-left: 4px solid #8FBC8F; padding-left: 10px; margin: 25px 0 15px; font-size: 1.5rem; }
-        .exercise-card { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; margin-bottom: 25px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
-        .exercise-media { display: flex; flex-direction: column; gap: 10px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: #000; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .exercise-info h4 { color: #E97451; font-size: 1.25rem; margin-bottom: 10px; }
-        .exercise-info p { margin-bottom: 10px; font-size: 0.95rem; }
-        .exercise-info ul { list-style-position: inside; font-size: 0.9rem; color: #555; }
-        .exercise-info ul li { margin-bottom: 5px; }
-        
-        .bmi-container { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eef2e6; }
-        .bmi-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .results-box { background: #f5f7f2; padding: 25px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; }
-        .result-item { margin-bottom: 15px; font-size: 1.1rem; }
-        .result-val { font-weight: bold; color: #556B2F; font-size: 1.3rem; }
-        
-        .contatti-box { background: #f5f7f2; padding: 40px; border-radius: 12px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .info-recapiti { background: white; padding: 25px; border-radius: 8px; border: 1px solid #eef2e6; }
-        .info-recapiti h3 { color: #556B2F; margin-bottom: 15px; }
-        .info-recapiti p { margin-bottom: 15px; font-size: 1.05rem; }
-        .info-recapiti a { color: #333; text-decoration: none; }
-        .form-contatti-email { background: white; padding: 25px; border-radius: 8px; border: 1px solid #eef2e6; }
-        .form-contatti-email h3 { color: #556B2F; margin-bottom: 15px; font-size: 1.3rem; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; color: #555; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; background: #fafafa; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #556B2F; outline: none; background: white; }
-        
-        button, .chat-button-inline { width: 100%; background: #E97451; color: white; border: none; padding: 14px; font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-align: center; text-decoration: none; display: block; transition: background 0.2s; }
-        button:hover, .chat-button-inline:hover { background: #d46341; }
-        .chat-button-inline { background: #556B2F; margin-top: 15px; }
-        .chat-button-inline:hover { background: #415224; }
-        
-        /* Stile messaggio di riscontro email dinamico */
-        #form-status { margin-top: 15px; padding: 12px; border-radius: 4px; font-size: 0.95rem; font-weight: bold; text-align: center; display: none; }
-        #form-status.success { background: #eef7ee; color: #3e7d3e; border: 1px solid #8FBC8F; }
-        #form-status.error { background: #fdf1f1; color: #c0392b; border: 1px solid #f5c6cb; }
-
-        footer { background: #222; color: white; text-align: center; padding: 15px; margin-top: 40px; }
-        .chat-expert-floating { position: fixed; bottom: 25px; right: 25px; background: #556B2F; color: white !important; text-decoration: none; padding: 15px 22px; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center; gap: 10px; transition: transform 0.3s ease, background 0.3s ease; }
-        .chat-expert-floating:hover { transform: scale(1.05); background: #415224; }
-        .chat-icon { font-size: 1.3rem; }
-        
-        @media (max-width: 768px) { .contatti-box, .bmi-flex, .exercise-card, .recipe-grid, .products-grid { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; gap: 10px; padding: 10px 5%; } body { padding-top: 40px; } .hero { padding: 140px 5% 60px; } .chat-expert-floating { bottom: 15px; right: 15px; padding: 12px 18px; font-size: 0.9rem; } }
-    </style>
-</head>
-<body>
-
-    <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="chat-expert-floating">
-        <span class="chat-icon">💬</span> Chatta con l'Esperto
-    </a>
-
-    <header>
-        <div style="font-size: 1.2rem; font-weight: bold; color: #556B2F;">Dr. Francesco Fonseca</div>
-        <nav>
-            <a href="#alimentazione">Alimentazione</a>
-            <a href="#forum-nutrizione">Forum Nutrizione</a>
-            <a href="#prodotti">Gamma Juice Plus+</a>
-            <a href="#forum-allenamento">Forum Esercizi</a>
-            <a href="#bmi-section">Calcola BMI</a>
-            <a href="#contatti">Contatti</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Nutri il tuo corpo. Trasforma la tua vita.</h1>
-        <p>Piani alimentari personalizzati, consigli scientifici e integrazione mirata basata sulle tue reali esigenze.</p>
-    </section>
-
-    <section id="alimentazione">
-        <h2 class="section-title">Alimentazione e Cibi Sani</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>La Spesa Consapevole</h3>
-                <p>Impara a leggere le etichette nutrizionali ed evita gli inganni del marketing per fare scelte sane e veloci.</p>
-            </div>
-            <div class="card">
-                <h3>Il Piatto Equilibrato</h3>
-                <p>Distribuisci macro e micronutrienti in modo corretto durante la giornata per non soffrire la fame.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="forum-nutrizione">
-        <h2 class="section-title">Forum della Nutrizione Specialistica</h2>
-        <div class="forum-box">
-            <div class="forum-question-card">
-                <h3><span>❓</span> Domanda: Cosa devo mangiare realmente per perdere peso in salute senza soffrire la fame?</h3>
-                <p style="font-size: 0.95rem; color: #555;"><strong>UtenteAnonimo:</strong> Salve Dottore, vorrei dimagrire ma ho paura di dover eliminare del tutto i carboidrati. Quali sono gli alimenti ideali?</p>
-                <div class="doctor-reply">
-                    <h4>Dr. Francesco Fonseca:</h4>
-                    <p>Per perdere peso serve un <strong>deficit calorico controllato</strong> aumentando la sazietà. È fondamentale inserire fonti proteiche magre e carboidrati ricchi di fibre.</p>
-                    <div class="food-tags">
-                        <span class="tag-si">✔️ Cibi Consigliati: Petto di pollo/tacchino, pesce azzurro, uova, legumi, avena, verdure a foglia verde, riso integrale.</span>
-                        <span class="tag-no">❌ Da evitare: Zuccheri raffinati, insaccati grassi, farine bianche, bevande gassate e alcolici.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="forum-question-card">
-                <h3><span>❓</span> Domanda: Quali alimenti supportano l'aumento della massa muscolare?</h3>
-                <p style="font-size: 0.95rem; color: #555;"><strong>Sportivo92:</strong> Bastano solo le proteine o servono anche i carboidrati per far crescere il muscolo?</p>
-                <div class="doctor-reply">
-                    <h4>Dr. Francesco Fonseca:</h4>
-                    <p>La crescita muscolare richiede un <strong>surplus calorico pulito</strong>. Le proteine costruiscono il tessuto muscolare, ma i carboidrati complessi forniscono l'energia necessaria.</p>
-                    <div class="food-tags">
-                        <span class="tag-si">✔️ Cibi Consigliati: Fusi di pollo, salmone, bresaola, fage greco, riso basmati, patate dolci, frutta secca, olio EVO.</span>
-                        <span class="tag-no">❌ Da evitare: Cibi da fast food, fritture, merendine industriali e salse ipercaloriche.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="forum-question-card">
-                <h3><span>❓</span> Domanda: Come gestire gli alimenti per mantenere il peso forma a lungo termine?</h3>
-                <p style="font-style: italic; font-size: 0.95rem; color: #555;"><strong>Elena_Lifestyle:</strong> Dottore, come devo regolarmi ora per non riprendere i chili persi senza stare sempre a dieta?</p>
-                <div class="doctor-reply">
-                    <h4>Dr. Francesco Fonseca:</h4>
-                    <p>Il mantenimento si basa sulla <strong>regola dell'80/20</strong>. L'80% da cibi densi di nutrienti e puliti, il restante 20% ti permette flessibilità sociale.</p>
-                    <div class="food-tags">
-                        <span class="tag-si">✔️ Cibi Consigliati: Cereali integrali variati, formaggi freschi magri, tanta frutta di stagione, avocado, carni magre.</span>
-                        <span class="tag-no">❌ Da evitare: Porzioni eccessive croniche, spuntini continui fuori pasto dettati dalla noia.</span>
-                    </div>
-                </div>
-            </div>
-
-            <hr style="border:0; border-top: 1px dashed #ccc; margin: 40px 0;">
-            <h3 class="forum-sub-title" style="margin-top: 10px;">🍽️ I Piatti Sani Consigliati dal Dr. Fonseca</h3>
-
-            <div class="recipe-grid">
-                <div class="recipe-card">
-                    <img class="recipe-img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Salmone e Asparagi">
-                    <div class="recipe-content">
-                        <span class="recipe-target">Dimagrimento</span>
-                        <h4>Filetto di Salmone al Vapore con Asparagi</h4>
-                        <div class="recipe-meta">⏱️ 20 min | 🔥 ~380 kcal</div>
-                        <div class="recipe-details">
-                            <h5>Ingredienti:</h5>
-                            <ul><li>150g di filetto di salmone</li><li>200g di asparagi</li><li>1 cucchiaino di olio EVO, limone</li></ul>
-                            <h5>Preparazione:</h5>
-                            <ol><li>Cuoci al vapore salmone e asparagi per 12-15 minuti.</li><li>Condisci a crudo con olio, limone e un pizzico di pepe.</li></ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="recipe-card">
-                    <img class="recipe-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Riso Basmati e Pollo">
-                    <div class="recipe-content">
-                        <span class="recipe-target massa">Massa Muscolare</span>
-                        <h4>Power Bowl di Basmati, Pollo e Avocado</h4>
-                        <div class="recipe-meta">⏱️ 25 min | 🔥 ~650 kcal</div>
-                        <div class="recipe-details">
-                            <h5>Ingredienti:</h5>
-                            <ul><li>80g di riso Basmati</li><li>150g di petto di pollo a cubetti</li><li>1/2 avocado maturo, spezie</li></ul>
-                            <h5>Preparazione:</h5>
-                            <ol><li>Lessa il riso. Salta il pollo in padella con spezie.</li><li>Unisci tutto in una ciotola aggiungendo l'avocado a fette.</li></ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="recipe-card">
-                    <img class="recipe-img" src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Insalata di Quinoa">
-                    <div class="recipe-content">
-                        <span class="recipe-target mantenimento">Mantenimento</span>
-                        <h4>Insalata Mediterranea di Quinoa e Feta</h4>
-                        <div class="recipe-meta">⏱️ 15 min | 🔥 ~460 kcal</div>
-                        <div class="recipe-details">
-                            <h5>Ingredienti:</h5>
-                            <ul><li>70g di quinoa</li><li>50g di feta greca light</li><li>Pomodorini, cetrioli, olive nere</li></ul>
-                            <h5>Preparazione:</h5>
-                            <ol><li>Bolli la quinoa e lasciala raffreddare.</li><li>Mescola con le verdure tagliate e la feta a cubetti. Condisci con olio.</li></ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="prodotti">
-        <h2 class="section-title">Integrazione Naturale Juice Plus+</h2>
-        <p class="section-subtitle">
-            I prodotti Juice Plus+ aiutano a colmare il vuoto nutrizionale quotidiano offrendo ingredienti di origine vegetale minimamente lavorati. Scopri la gamma completa selezionata per i tuoi obiettivi.
-        </p>
-
-        <div class="jp-category-title">🟢 Linea Essentials (Capsule)</div>
+<div class="jp-category-title">🟢 Linea Essentials (Capsule)</div>
         <div class="products-grid">
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-fruit-and-vegetable-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210086300/capsules-fv-pdp.png" alt="Juice Plus Essentials Frutta e Verdura">
+                <img class="product-img" src="frutta-e-verdura.webp" alt="Juice Plus Essentials Frutta e Verdura">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Essentials</span>
                     <h3>Miscela Frutta e Verdura</h3>
-                    <p class="product-desc">Concentrato di 18 diversi tipi di frutta e verdura raccolte al perfetto grado di maturazione per mantenere intatti fitonutrienti e vitamine.</p>
-                    <div class="product-benefit">⚡ <strong>Benefici:</strong> Forte azione antiossidante, rinforza le difese immunitarie e riduce lo stress ossidativo cellulare.</div>
+                    <p class="product-desc">Concentrato di diversi tipi di frutta e verdura raccolte al perfetto grado di maturazione per mantenere intatti fitonutrienti e vitamine essenziali.</p>
+                    <div class="product-benefit">⚡ <strong>Benefici:</strong> Forte azione antiossidante, rinforza le difese immunitarie e supporta il benessere quotidiano.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
@@ -269,11 +16,11 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-berry-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1709210085448/capsules-b-pdp.png" alt="Juice Plus Essentials Bacche">
+                <img class="product-img" src="bacche.jpg" alt="Juice Plus Essentials Bacche">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Essentials</span>
                     <h3>Miscela Bacche</h3>
-                    <p class="product-desc">Un'accurata selezione di 12 varietà di bacche e piccoli frutti ricchi di polifenoli, ideali per la protezione cellulare.</p>
+                    <p class="product-desc">Un'accurata selezione di varietà di bacche e piccoli frutti rossi naturalmente ricchi di nutrienti e ideali per la protezione cellulare.</p>
                     <div class="product-benefit">🩸 <strong>Benefici:</strong> Supporta la microcircolazione, contrasta la ritenzione idrica e favorisce la salute di pelle, unghie e capelli.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
@@ -283,11 +30,11 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/capsules/juice-plus--essentials-omega-blend-capsules/_jcr_content/root/container/container_copy/image.coreimg.png/1715065478491/capsules-o-pdp.png" alt="Juice Plus Essentials Omega">
+                <img class="product-img" src="omega.webp" alt="Juice Plus Essentials Omega">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Essentials</span>
                     <h3>Miscela Omega+</h3>
-                    <p class="product-desc">Un'alternativa 100% vegetale ricavata da alghe, frutti e semi che racchiude uno spettro completo di acidi grassi Omega 3, 7 e 9.</p>
+                    <p class="product-desc">Un'alternativa 100% vegetale ricavata da alghe, frutti e semi selezionati che racchiude uno spettro bilanciato di acidi grassi Omega.</p>
                     <div class="product-benefit">🧠 <strong>Benefici:</strong> Contribuisce alla normale funzione cerebrale, alla salute dell'apparato cardiovascolare e della vista.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
@@ -300,12 +47,12 @@
         <div class="jp-category-title">🟠 Linea Complete (Pasti Sostitutivi)</div>
         <div class="products-grid">
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/complete-by-juice-plus--shakes/_jcr_content/root/container/container_copy_copy/image.coreimg.png/1709210086884/complete-shakes-pdp.png" alt="Complete Shakes">
+                <img class="product-img" src="shake.webp" alt="Complete Shakes">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Complete</span>
                     <h3>Complete Shake (Vaniglia / Cioccolato)</h3>
-                    <p class="product-desc">Sostituto del pasto bilanciato a base di proteine vegetali di alta qualità, carboidrati complessi e fibre prebiotiche.</p>
-                    <div class="product-benefit">⚖️ <strong>Benefici:</strong> Ideale per la gestione o perdita del peso, assicura un senso di sazietà prolungato senza cali glicemici.</div>
+                    <p class="product-desc">Sostituto del pasto bilanciato a base di proteine vegetali di alta qualità, carboidrati complessi e fibre prebiotiche utili all'organismo.</p>
+                    <div class="product-benefit">⚖️ <strong>Benefici:</strong> Perfetto per il controllo o la perdita di peso, assicura sazietà prolungata senza cali energetici repentini.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
@@ -314,12 +61,12 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/complete-by-juice-plus--bars/_jcr_content/root/container/container_copy_copy/image.coreimg.png/1709210087455/complete-bars-pdp.png" alt="Complete Bars">
+                <img class="product-img" src="barrette.webp" alt="Complete Bars">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Complete</span>
                     <h3>Complete Bars (Fruit / Chocolate)</h3>
-                    <p class="product-desc">Barrette ricche di frutta, semi di lino e mirtilli rossi che offrono un profilo nutrizionale perfettamente bilanciato da portare sempre con sé.</p>
-                    <div class="product-benefit">🎒 <strong>Benefici:</strong> Snack spezza-fame perfetto per il lavoro o i viaggi, evita i picchi di insulina indotti da merendine classiche.</div>
+                    <p class="product-desc">Gustose barrette ricche di nutrienti bilanciati e ingredienti selezionati, ideali da portare sempre con sé durante le giornate impegnative.</p>
+                    <div class="product-benefit">🎒 <strong>Benefici:</strong> Snack spezza-fame comodo e bilanciato, ottimo per evitare i classici picchi glicemici da merendine.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
@@ -328,12 +75,12 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/complete-by-juice-plus--vegetable-soup/_jcr_content/root/container/container_copy_copy/image.coreimg.png/1709210088015/complete-soup-pdp.png" alt="Complete Zuppa">
+                <img class="product-img" src="zuppe.jpg" alt="Complete Zuppa">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Complete</span>
                     <h3>Complete Vegetable Soup</h3>
-                    <p class="product-desc">La versione salata del pasto bilanciato. Una zuppa vegetale disidratata gustosa e calda, ricca di nutrienti essenziali.</p>
-                    <div class="product-benefit">🍲 <strong>Benefici:</strong> Un pranzo o una cena ipocalorica, calda e rigenerante, pronta in pochissimi minuti.</div>
+                    <p class="product-desc">La gustosa alternativa salata del pasto bilanciato Complete. Una zuppa vegetale disidratata e ricca di preziosi elementi nutritivi.</p>
+                    <div class="product-benefit">🍲 <strong>Benefici:</strong> Fornisce un pasto caldo, avvolgente, ipocalorico e controllato, pronto in pochissimi minuti.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
@@ -345,12 +92,12 @@
         <div class="jp-category-title">🔵 Linea Performance & Controllo</div>
         <div class="products-grid">
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/complete/juice-plus--perform/_jcr_content/root/container/container_copy_copy_1241198539/image.coreimg.png/1709210088513/perform-pdp.png" alt="Juice Plus Perform">
+                <img class="product-img" src="frutta-e-verdura.webp" alt="Juice Plus Perform">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Lifestyle</span>
                     <h3>Juice Plus+ Perform</h3>
-                    <p class="product-desc">Shake proteico specifico per sportivi, contenente 25g di proteine vegetali isolate a porzione, arricchito con vitamine del gruppo B naturali.</p>
-                    <div class="product-benefit">💪 <strong>Benefici:</strong> Supporta la crescita della massa muscolare, accelera il recupero post-allenamento e riduce la stanchezza fisica.</div>
+                    <p class="product-desc">Shake proteico specifico per sportivi, formulato con proteine vegetali isolate ad alto valore biologico e vitamine del gruppo B naturali.</p>
+                    <div class="product-benefit">💪 <strong>Benefici:</strong> Supporta la crescita della massa muscolare magra e velocizza il recupero post-allenamento intenso.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
@@ -359,12 +106,12 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/uplift/juice-plus--uplift/_jcr_content/root/container/container_copy_copy_1241198539/image.coreimg.png/1709210089332/uplift-pdp.png" alt="Uplift Energia">
+                <img class="product-img" src="luminate.webp" alt="Luminate Energia">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Energy</span>
-                    <h3>Juice Plus+ Uplift</h3>
-                    <p class="product-desc">Un integratore energetico naturale in stick effervescenti a base di Yerba Mate, Mango, Guava e scorza di Limone.</p>
-                    <div class="product-benefit">🎯 <strong>Benefici:</strong> Fornisce energia pulita a lento rilascio, aumenta la concentrazione mentale nello studio/lavoro senza l'effetto "crash".</div>
+                    <h3>Juice Plus+ Luminate</h3>
+                    <p class="product-desc">Integratore energetico naturale in pratici stick a base di ingredienti botanici come Yerba Mate ed estratti vegetali mirati.</p>
+                    <div class="product-benefit">🎯 <strong>Benefici:</strong> Favorisce la concentrazione mentale, contrasta la stanchezza mentale nello studio o nel lavoro senza nervosismo.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
@@ -373,12 +120,12 @@
             </div>
 
             <div class="product-card">
-                <img class="product-img" src="https://gbu.juiceplus.com/content/jpc/gbu/it/products/booster/complete-by-juice-plus--booster/_jcr_content/root/container/container_copy_copy_1241198539/image.coreimg.png/1709210089856/booster-pdp.png" alt="Control Booster">
+                <img class="product-img" src="control.webp" alt="Control Booster">
                 <div class="product-info">
                     <span class="product-brand">Juice Plus+ Target</span>
                     <h3>Complete Control Booster</h3>
-                    <p class="product-desc">Integratore in bustine monodose contenente Glucomannano, una fibra naturale estratta dalla radice di Konjac che assorbe acqua nello stomaco.</p>
-                    <div class="product-benefit">🛑 <strong>Benefici:</strong> Riduce drasticamente gli attacchi di fame nervosa prima dei pasti principali e favorisce il transito intestinale.</div>
+                    <p class="product-desc">Integratore in bustine monodose contenente Glucomannano, una fibra solubile ideale da assumere prima dei pasti principali.</p>
+                    <div class="product-benefit">🛑 <strong>Benefici:</strong> Aiuta a tenere sotto controllo il senso di fame e supporta i percorsi nutrizionali di perdita peso.</div>
                     <div class="product-actions">
                         <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="btn-buy">🛒 Compra subito</a>
                         <a href="#contatti" class="btn-info">Info Studio</a>
@@ -386,164 +133,3 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="forum-allenamento">
-        <h2 class="section-title">Forum dell'Allenamento Interattivo</h2>
-        <div class="forum-allenamento">
-            <h3 class="forum-sub-title">🏋️ Esercizi Chiave per la Tonificazione</h3>
-            <div class="exercise-card">
-                <div class="exercise-info">
-                    <h4>Lo Squat (Gambe e Glutei)</h4>
-                    <p>Ottimo per dare tono a cosce e glutei e attivare il metabolismo complessivo.</p>
-                </div>
-                <div class="exercise-media">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/aclHkVaku9U" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="exercise-card">
-                <div class="exercise-info">
-                    <h4>I Piegamenti (Push-Ups)</h4>
-                    <p>Fondamentale per tonificare braccia, spalle e pettorali in modo sicuro.</p>
-                </div>
-                <div class="exercise-media">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/IODxDxX7oi4" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="bmi-section">
-        <h2 class="section-title">Calcola il tuo BMI Attuale e Obiettivo</h2>
-        <div class="bmi-container">
-            <div class="bmi-flex">
-                <div class="bmi-form">
-                    <div class="form-group"><label>Altezza (in cm)</label><input type="number" id="altezza" placeholder="Es. 175"></div>
-                    <div class="form-group"><label>Peso Attuale (in kg)</label><input type="number" id="peso-attuale" placeholder="Es. 80"></div>
-                    <div class="form-group"><label>Peso Obiettivo (in kg)</label><input type="number" id="peso-obiettivo" placeholder="Es. 70"></div>
-                    <button type="button" onclick="calcolaBMI()">Calcola i tuoi dati</button>
-                </div>
-                <div class="results-box">
-                    <div class="result-item">Il tuo BMI Attuale: <span id="bmi-att-val" class="result-val">-</span></div>
-                    <div class="result-item">Stato di salute attuale: <span id="bmi-att-status">-</span></div>
-                    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
-                    <div class="result-item">Il tuo BMI Obiettivo: <span id="bmi-obj-val" class="result-val">-</span></div>
-                    <div class="result-item">Stato di salute obiettivo: <span id="bmi-obj-status">-</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contatti">
-        <h2 class="section-title">Contatti & Prenotazioni</h2>
-        <div class="contatti-box">
-            <div class="info-recapiti">
-                <h3>I Miei Recapiti</h3>
-                <p><strong>📍 Studio:</strong> Via per Leporano 94</p>
-                <p><strong>📞 Telefono:</strong> <a href="tel:+393923060288">+39 392 306 0288</a></p>
-                <p><strong>✉️ Email:</strong> <a href="mailto:francescofonsec@hotmail.it">francescofonsec@hotmail.it</a></p>
-                
-                <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
-                <p>Hai domande veloci? Puoi scrivermi istantaneamente anche sui social:</p>
-                <a href="https://ig.me/m/francesco.fonseca1" target="_blank" class="chat-button-inline">💬 Chatta su Instagram</a>
-            </div>
-
-            <div class="form-contatti-email">
-                <h3>Invia un messaggio in Studio</h3>
-                <form id="email-form" action="https://formspree.io/f/xanykgzo" method="POST">
-                    <input type="hidden" name="_to" value="francescofonsec@hotmail.it">
-                    <input type="hidden" name="_subject" value="Nuovo messaggio dall'App di Nutrizione">
-                    
-                    <div class="form-group">
-                        <label for="name">Nome Completo</label>
-                        <input type="text" id="name" name="name" required placeholder="Es. Mario Rossi">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Tua Email</label>
-                        <input type="email" id="email" name="email" required placeholder="Es. mario.rossi@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Come posso aiutarti? (Richiesta dieta, info Juice Plus+, appuntamento...)</label>
-                        <textarea id="message" name="message" rows="4" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
-                    </div>
-                    
-                    <button type="submit" id="form-submit-btn">📧 Invia Messaggio</button>
-                    <div id="form-status"></div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer><p>&copy; 2026 Dr. Francesco Fonseca. Tutti i diritti riservati.</p></footer>
-
-    <script>
-        // Gestione invio modulo contatti in AJAX con riscontro istantaneo a schermo
-        var form = document.getElementById("email-form");
-        var button = document.getElementById("form-submit-btn");
-        var statusBox = document.getElementById("form-status");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Impedisce il caricamento della pagina bianca di Formspree
-            button.disabled = true;
-            button.innerText = "Invio in corso...";
-            
-            var data = new FormData(form);
-            
-            fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                statusBox.style.display = "block";
-                if (response.ok) {
-                    statusBox.className = "success";
-                    statusBox.innerText = "Grazie! Il tuo messaggio è stato inviato con successo.";
-                    form.reset(); // Svuota i campi
-                } else {
-                    statusBox.className = "error";
-                    statusBox.innerText = "Si è verificato un problema. Riprova o contatta direttamente lo studio.";
-                }
-                button.disabled = false;
-                button.innerText = "📧 Invia Messaggio";
-            }).catch(error => {
-                statusBox.style.display = "block";
-                statusBox.className = "error";
-                statusBox.innerText = "Errore di connessione. Controlla la tua rete internet.";
-                button.disabled = false;
-                button.innerText = "📧 Invia Messaggio";
-            });
-        });
-
-        function getBmiStatus(bmi) {
-            if (bmi < 18.5) return "Sottopeso";
-            if (bmi >= 18.5 && bmi < 25) return "Normopeso";
-            if (bmi >= 25 && bmi < 30) return "Sovrappeso";
-            return "Obesità";
-        }
-        
-        function calcolaBMI() {
-            var altezzaCm = parseFloat(document.getElementById('altezza').value);
-            var pesoActual = parseFloat(document.getElementById('peso-attuale').value);
-            var pesoObj = parseFloat(document.getElementById('peso-obiettivo').value);
-            if (!altezzaCm || !pesoActual || !pesoObj) { alert("Compila tutti i campi numerici."); return; }
-            var altezzaM = altezzaCm / 100;
-            var bmiAttuale = pesoActual / (altezzaM * altezzaM);
-            document.getElementById('bmi-att-val').innerText = bmiAttuale.toFixed(1);
-            document.getElementById('bmi-att-status').innerText = getBmiStatus(bmiAttuale);
-            var bmiObiettivo = pesoObj / (altezzaM * altezzaM);
-            document.getElementById('bmi-obj-val').innerText = bmiObiettivo.toFixed(1);
-            document.getElementById('bmi-obj-status').innerText = getBmiStatus(bmiObiettivo);
-        }
-
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });
-        }
-    </script>
-</body>
-</html>
